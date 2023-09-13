@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Schedule;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index ()
     {
-        $schedules = Schedule::latest();
+        $classrooms = Classroom::latest()->get();
 
-        return view('pages.schedule.index', [
-            'schedules' => $schedules
+        return view('pages.classroom.index', [
+            'classrooms' => $classrooms
         ]);
     }
 
@@ -26,7 +26,7 @@ class ScheduleController extends Controller
     public function create()
     {
 
-        return view('pages.schedule.create');
+        return view('pages.classroom.create');
     }
 
 
@@ -35,7 +35,11 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Classroom::Create([
+            'name' => $request->name,
+        ]);
+
+        return redirect(route('classes.index'));
     }
 
     /**
@@ -51,7 +55,11 @@ class ScheduleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $class = Classroom::findorFail($id);
+        return view('pages.classroom.edit', [
+            'class' => $class
+        ]);
     }
 
     /**
@@ -59,7 +67,13 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $class = Classroom::findorFail($id);
+
+        $class->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect(route('classes.index'));
     }
 
     /**
@@ -67,6 +81,9 @@ class ScheduleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $class = Classroom::findOrFail($id);
+        $class->delete();
+
+        return redirect()->route('classes.index');
     }
 }

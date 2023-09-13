@@ -33,16 +33,21 @@
                           <tr>
                             <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Nama</th>
                             <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Kelas</th>
+                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tanggal</th>
                             <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Materi</th>
                             <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Aksi</th>
                           </tr>
                         </thead>
                       <tbody class="text-gray-700">
+                        @foreach ($schedules as $schedule)
+                          
+                        @endforeach
                         <tr>
-                          <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                          <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                          <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                          <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->name }}</td>
+                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->classroom->name }}</td>
+                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->date }}</td>
+                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->material }}</td>
+                          <td class="w-1/3 text-left py-3 px-4"></td>
                         </tr>
                         
                       </tbody>

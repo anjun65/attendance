@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ClassroomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,7 @@ Route::middleware([
 
         Route::resource('dashboard/schedules', ScheduleController::class);
 
-        Route::resource('dashboard/classes', ScheduleController::class);
+        Route::resource('dashboard/classes', ClassroomController::class);
     });
 
 Route::middleware('auth')->group(function () {

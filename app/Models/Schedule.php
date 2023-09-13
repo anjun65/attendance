@@ -13,5 +13,11 @@ class Schedule extends Model
         'name',
         'classrooms_id',
         'material',
+        'date',
     ];
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class, 'classrooms_id', 'id');
+    }
 }

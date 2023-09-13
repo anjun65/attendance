@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class ScheduleController extends Controller
      */
     public function index ()
     {
-        $schedules = Schedule::latest();
+        $schedules = Schedule::latest()->get();
 
         return view('pages.schedule.index', [
             'schedules' => $schedules
@@ -25,8 +26,11 @@ class ScheduleController extends Controller
      */
     public function create()
     {
+        $classes = Classroom::latest()->get();
 
-        return view('pages.schedule.create');
+        return view('pages.schedule.create', [
+            'classes' => $classes,
+        ]);
     }
 
 
@@ -35,9 +39,17 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Schedule::Create([
+            'name' => $request->name,
+            'classrooms_id' => $request->classrooms_id,
+            'material' => $request->material,
+            'date' => $request->date,
+        ]);
+
+        return redirect(route('schedules.index'));
     }
 
+    
     /**
      * Display the specified resource.
      */
