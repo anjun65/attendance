@@ -40,15 +40,15 @@
                         </thead>
                       <tbody class="text-gray-700">
                         @foreach ($schedules as $schedule)
-                          
+                          <tr>
+                            <td class="w-1/3 text-left py-3 px-4">{{ $schedule->name }}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{ $schedule->classroom->name }}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{ $schedule->date }}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{ $schedule->material }}</td>
+                            <td class="w-1/3 text-left py-3 px-4"></td>
+                          </tr>
                         @endforeach
-                        <tr>
-                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->name }}</td>
-                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->classroom->name }}</td>
-                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->date }}</td>
-                          <td class="w-1/3 text-left py-3 px-4">{{ $schedule->material }}</td>
-                          <td class="w-1/3 text-left py-3 px-4"></td>
-                        </tr>
+                        
                         
                       </tbody>
                       </table>
